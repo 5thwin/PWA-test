@@ -5,6 +5,8 @@ const App: React.FC = () => {
 	const [userChoice, setUserChoice] = useState<string | null>(null);
 	const [computerChoice, setComputerChoice] = useState<string | null>(null);
 	const [result, setResult] = useState<string | null>(null);
+	const [userWins, setUserWins] = useState<number>(0);
+	const [computerWins, setComputerWins] = useState<number>(0);
 
 	const choices = ['rock', 'paper', 'scissors'];
 
@@ -24,8 +26,10 @@ const App: React.FC = () => {
 			(user === 'scissors' && computer === 'paper')
 		) {
 			setResult('You win!');
+			setUserWins(userWins + 1);
 		} else {
 			setResult('You lose!');
+			setComputerWins(computerWins + 1);
 		}
 	};
 
@@ -50,6 +54,10 @@ const App: React.FC = () => {
 					<p className="text-2xl font-bold">{result}</p>
 				</div>
 			)}
+			<div className="text-center mt-8">
+				<p className="text-xl">Your Wins: {userWins}</p>
+				<p className="text-xl">Computer Wins: {computerWins}</p>
+			</div>
 		</div>
 	);
 };
